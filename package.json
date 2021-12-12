@@ -17,14 +17,8 @@
 	"scripts": {
 		"bench": "npm update glob-stream fast-glob && matcha bench.js",
 		"test": "xo && ava && tsd",
-		"build": "babel src -d lib"
+		"build": "rollup src/index.js --file lib/index.js --format cjs"
 	},
-	"files": [
-		"index.js",
-		"index.d.ts",
-		"gitignore.js",
-		"stream-utils.js"
-	],
 	"keywords": [
 		"all",
 		"array",
@@ -64,12 +58,10 @@
 		"fast-glob": "^3.2.7",
 		"ignore": "^5.1.9",
 		"merge2": "^1.4.1",
+		"rollup": "^2.61.1",
 		"slash": "^4.0.0"
 	},
 	"devDependencies": {
-		"@babel/cli": "^7.16.0",
-		"@babel/core": "^7.16.0",
-		"@babel/preset-env": "^7.16.4",
 		"@types/node": "^16.11.11",
 		"ava": "^3.15.0",
 		"get-stream": "^6.0.1",

@@ -4,7 +4,17 @@ import fs from 'node:fs';
 import path from 'node:path';
 import fastGlob from 'fast-glob';
 import gitIgnore from 'ignore';
-import slash from 'slash';
+
+function slash(path) {
+	const isExtendedLengthPath = /^\\\\\?\\/.test(path);
+	const hasNonAscii = /[^\u0000-\u0080]+/.test(path); // eslint-disable-line no-control-regex
+
+	if (isExtendedLengthPath || hasNonAscii) {
+		return path;
+	}
+
+	return path.replace(/\\/g, '/');
+}
 
 const DEFAULT_IGNORE = [
 	'**/node_modules/**',

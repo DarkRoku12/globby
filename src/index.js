@@ -1,10 +1,11 @@
 import fs from 'node:fs';
-import arrayUnion from 'array-union';
 import merge2 from 'merge2';
 import fastGlob from 'fast-glob';
 import dirGlob from 'dir-glob';
 import {isGitIgnored, isGitIgnoredSync} from './gitignore.js';
 import {FilterStream, UniqueStream} from './stream-utils.js';
+
+const arrayUnion = (...arguments_) => [...new Set(arguments_.flat())];
 
 const DEFAULT_FILTER = () => false;
 
